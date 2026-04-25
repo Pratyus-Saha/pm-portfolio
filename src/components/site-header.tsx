@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
-import { navItems, siteConfig } from "@/lib/site/config";
+import { navItems } from "@/lib/site/config";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -11,15 +11,18 @@ export function SiteHeader() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 py-5 md:px-6">
-      <nav className="mx-auto flex max-w-[1500px] items-center justify-between gap-3 rounded-full border border-[rgba(26,26,26,0.10)] bg-paper/96 px-4 py-3 shadow-[0_14px_40px_rgba(26,26,26,0.05)]">
-        <Link
-          href="/"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-base font-semibold text-background transition-colors hover:bg-[#2f2f2f]"
-        >
-          PS
+      <nav className="mx-auto flex w-max items-center justify-between gap-3 rounded-full border border-[rgba(26,26,26,0.10)] bg-paper/96 px-3 py-2.5 shadow-[0_14px_40px_rgba(26,26,26,0.05)]">
+        <Link href="/" className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
+          <Image
+            src="/images/profile/pratyus-saha.png"
+            alt="Profile"
+            fill
+            className="object-cover"
+            sizes="44px"
+          />
         </Link>
         <div className="flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto px-2">
-          {navItems.map((item) => {
+          {navItems.filter(item => item.label !== "Contact").map((item) => {
             const active =
               item.href === "/"
                 ? pathname === item.href
@@ -30,8 +33,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "whitespace-nowrap rounded-full px-5 py-3 text-sm font-medium transition-colors hover:bg-secondary",
-                  active && "bg-foreground text-background"
+                  "whitespace-nowrap rounded-full px-4 py-2 text-[0.9rem] text-foreground/80 font-medium transition-colors hover:bg-secondary",
+                  active && "bg-transparent text-foreground font-semibold"
                 )}
               >
                 {item.label}
@@ -39,15 +42,12 @@ export function SiteHeader() {
             );
           })}
         </div>
-        <a
-          href={siteConfig.linkedin}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-medium text-background transition-colors hover:bg-[#2f2f2f] sm:flex"
+        <Link
+          href="/contact"
+          className="flex items-center justify-center rounded-full bg-foreground px-6 py-2.5 text-sm font-medium text-background transition-colors hover:bg-[#2f2f2f]"
         >
-          LinkedIn
-          <ArrowUpRight size={15} aria-hidden="true" />
-        </a>
+          Contact
+        </Link>
       </nav>
     </header>
   );

@@ -21,15 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} h-full scroll-smooth antialiased`}
-    >
-      <body className="min-h-full bg-background text-foreground">
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-      </body>
-    </html>
+      <html
+        lang="en"
+        className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth antialiased bg-[#1c1c1c]`}
+      >
+        <body className="text-foreground">
+          <div className="relative z-10 bg-background mb-[1000px] lg:mb-[650px] shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-b-[40px] md:rounded-b-[60px] pb-10">
+            <SiteHeader />
+            {children}
+          </div>
+          <SiteFooter />
+        </body>
+      </html>
   );
 }

@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images/projects"
+public_folder: "/images/projects"
+
+collections:
+  - name: "case-studies"
+    label: "Case Studies"
+    folder: "content/case-studies"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Subtitle", name: "subtitle", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Domain", name: "domain", widget: "string"}
+      - {label: "Type", name: "type", widget: "string", default: "Case Study"}
+      - {label: "Status", name: "status", widget: "select", options: ["published", "draft"], default: "published"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: true}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Timeline", name: "timeline", widget: "string"}
+      - {label: "Team", name: "team", widget: "string"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Problem", name: "problem", widget: "text"}
+      - {label: "Decision Focus", name: "decisionFocus", widget: "text"}
+      - {label: "Outcome", name: "outcome", widget: "text"}
+      - {label: "Cover Image", name: "coverImage", widget: "image", required: false}
+      - label: "Metrics"
+        name: "metrics"
+        widget: "list"
+        fields:
+          - {label: "Value", name: "value", widget: "string"}
+          - {label: "Label", name: "label", widget: "string"}
+          - {label: "Context", name: "context", widget: "string", required: false}
+      - {label: "Skills", name: "skills", widget: "list"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "PRD Slug", name: "prdSlug", widget: "string", required: false}
+      - {label: "Related Projects", name: "relatedProjects", widget: "list", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "prds"
+    label: "Artifacts / PRDs"
+    folder: "content/prds"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Subtitle", name: "subtitle", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Decision Focus", name: "decisionFocus", widget: "text"}
+      - {label: "Downloadable File", name: "downloadable", widget: "file", required: false}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Body", name: "body", widget: "markdown"}

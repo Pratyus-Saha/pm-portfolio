@@ -1,57 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { z } from "zod";
+import matter from "gray-matter";
 import type { Artifact, Project } from "@/types/content";
 
-const dataRoot = path.join(process.cwd(), "data");
 const contentRoot = path.join(process.cwd(), "content");
-
-const metricSchema = z.object({
-  value: z.string(),
-  label: z.string(),
-  context: z.string().optional(),
-});
-
-const prdSchema = z.object({
-  slug: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
-  summary: z.string(),
-  decisionFocus: z.string(),
-  downloadable: z.string().optional(),
-  tags: z.array(z.string()),
-});
-
-const projectSchema = z.object({
-  slug: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
-  domain: z.string(),
-  type: z.string(),
-  status: z.enum(["published", "draft"]),
-  featured: z.boolean(),
-  role: z.string(),
-  timeline: z.string(),
-  team: z.string(),
-  summary: z.string(),
-  problem: z.string(),
-  decisionFocus: z.string(),
-  outcome: z.string(),
-  metrics: z.array(metricSchema),
-  skills: z.array(z.string()),
-  tags: z.array(z.string()),
-  coverImage: z.string().optional(),
-  caseStudySlug: z.string(),
-  prd: prdSchema.optional(),
-  relatedProjects: z.array(z.string()),
-});
-
-const projectsSchema = z.array(projectSchema);
-
-function readJson<T>(relativePath: string, schema: z.ZodSchema<T>): T {
-  const filePath = path.join(dataRoot, relativePath);
-  return schema.parse(JSON.parse(fs.readFileSync(filePath, "utf8")));
-}
 
 function getMdxSlugs(relativeDir: string) {
   const dirPath = path.join(contentRoot, relativeDir);
@@ -74,8 +26,65 @@ function readMdx(relativeDir: string, slug: string) {
   return fs.readFileSync(filePath, "utf8");
 }
 
+function parseProjectFrontmatter(fileContents: string): Project {
+  const { data } = matter(fileContents);
+  
+  // Create a base project object, handling defaults for arrays and metrics
+  return {
+    slug: data.slug || "",
+    title: data.title || "",
+    subtitle: data.subtitle || "",
+    domain: data.domain || "",
+    type: data.type || "Case Study",
+    status: data.status || "draft",
+    featured: Boolean(data.featured),
+    role: data.role || "",
+    timeline: data.timeline || "",
+    team: data.team || "",
+    summary: data.summary || "",
+    problem: data.problem || "",
+    decisionFocus: data.decisionFocus || "",
+    outcome: data.outcome || "",
+    metrics: data.metrics || [],
+    skills: data.skills || [],
+    tags: data.tags || [],
+    coverImage: data.coverImage,
+    caseStudySlug: data.slug || "",
+    relatedProjects: data.relatedProjects || [],
+    prd: undefined // This will be populated later if prdSlug exists
+  };
+}
+
 export function getProjects(): Project[] {
-  return readJson("projects.json", projectsSchema)
+  const slugs = getMdxSlugs("case-studies");
+  const projects = slugs.map((slug) => {
+    const fileContents = readMdx("case-studies", slug);
+    if (!fileContents) return null;
+    
+    const { data } = matter(fileContents);
+    const project = parseProjectFrontmatter(fileContents);
+    
+    // Attach PRD if prdSlug exists
+    if (data.prdSlug) {
+      const prdContents = readMdx("prds", data.prdSlug);
+      if (prdContents) {
+        const prdData = matter(prdContents).data;
+        project.prd = {
+          slug: prdData.slug || data.prdSlug,
+          title: prdData.title || "",
+          subtitle: prdData.subtitle || "",
+          summary: prdData.summary || "",
+          decisionFocus: prdData.decisionFocus || "",
+          downloadable: prdData.downloadable,
+          tags: prdData.tags || [],
+        };
+      }
+    }
+    
+    return project;
+  }).filter((p): p is Project => p !== null);
+
+  return projects
     .filter((project) => project.status === "published")
     .sort((a, b) => Number(b.featured) - Number(a.featured));
 }
@@ -93,7 +102,10 @@ export function getProjectByCaseStudySlug(caseStudySlug: string) {
 }
 
 export function getProjectContent(caseStudySlug: string) {
-  return readMdx("case-studies", caseStudySlug);
+  const content = readMdx("case-studies", caseStudySlug);
+  if (!content) return null;
+  const { content: markdownBody } = matter(content);
+  return markdownBody;
 }
 
 export function getAllCaseStudySlugs() {
@@ -133,7 +145,10 @@ export function getArtifact(slug: string): Artifact | undefined {
 }
 
 export function getArtifactContent(slug: string) {
-  return readMdx("prds", slug);
+  const content = readMdx("prds", slug);
+  if (!content) return null;
+  const { content: markdownBody } = matter(content);
+  return markdownBody;
 }
 
 export function getAllPrdSlugs() {

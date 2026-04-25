@@ -25,7 +25,7 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
     <main className="pt-28">
       <Section
         eyebrow="Case studies"
-        title="Product stories that show problem framing, tradeoffs, and execution judgment."
+        title="Strategic deep dives into problem framing, architectural tradeoffs, and high-impact execution."
       >
         {editMode && (
           <div className="mb-6 flex flex-col gap-4">
