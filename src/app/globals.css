@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --background: #edf2f4;
+  --foreground: #1a1a1a;
+  --secondary: #f3ebe1;
+  --accent: #e9e2d8;
+  --muted: #ded7ce;
+  --paper: #f8f5ef;
+  --line: rgba(26, 26, 26, 0.14);
+  --soft-line: rgba(26, 26, 26, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+a,
+button {
+  text-underline-offset: 4px;
+}
+
+.hero-condensed {
+  font-family: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
+  font-size-adjust: 0.5;
+  font-stretch: condensed;
+  font-weight: 800;
+}
+
+.prose-portfolio {
+  color: var(--foreground);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.prose-portfolio h2 {
+  border-top: 1px solid var(--line);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.05;
+  margin-top: 5rem;
+  padding-top: 3rem;
+}
+
+.prose-portfolio h3 {
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+}
+
+.prose-portfolio p {
+  margin-top: 1.25rem;
+}
+
+.prose-portfolio ul,
+.prose-portfolio ol {
+  margin-top: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.prose-portfolio li {
+  margin-top: 0.65rem;
+}
+
+.prose-portfolio strong {
+  font-weight: 650;
+}
+
+.prose-portfolio table {
+  border-collapse: collapse;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.prose-portfolio a {
+  text-decoration: underline;
+}
+
+.prose-portfolio th,
+.prose-portfolio td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose-portfolio th {
+  font-size: 0.85rem;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.prose-portfolio pre {
+  background: #1a1a1a;
+  border-radius: 18px;
+  color: #edf2f4;
+  font-family: var(--font-geist-mono), monospace;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 1.1rem;
+}
+
+.prose-portfolio code {
+  background: rgba(26, 26, 26, 0.08);
+  border-radius: 8px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.92em;
+  padding: 0.12rem 0.35rem;
+}
+
+.prose-portfolio pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.prose-portfolio img {
+  border: 1px solid var(--soft-line);
+  border-radius: 24px;
+  margin-top: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .prose-portfolio h2 {
+    font-size: 2.25rem;
+    margin-top: 4rem;
+  }
+}

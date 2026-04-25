@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "astrocure",
+    "title": "AstroCure",
+    "subtitle": "AI-powered astrology intelligence without fear-based exploitation.",
+    "domain": "Faith-tech, AI trust, consumer product",
+    "type": "Case Study",
+    "status": "published",
+    "featured": true,
+    "role": "Founder and Product Lead",
+    "timeline": "Aug 2025 - Present",
+    "team": "Solo founder with technical build ownership",
+    "summary": "A trust-first astrology platform that replaces opaque, fear-driven consultations with calculation-grounded Vedic astrology insights, citations, and transparent reasoning.",
+    "problem": "Millions of Indian astrology users cannot distinguish rigorous chart reasoning from cold reading, upselling, and anxiety loops.",
+    "decisionFocus": "Replace the human marketplace incentive model with a calculation and RAG architecture that makes every insight traceable.",
+    "outcome": "Pre-seed MVP in active development with the product thesis, market case, fraud model, user journeys, and technical architecture defined.",
+    "metrics": [
+      {
+        "value": "40M+",
+        "label": "Customers served by a leading incumbent",
+        "context": "Signals a massive behavior already migrated online."
+      },
+      {
+        "value": "49%",
+        "label": "Projected India astrology app CAGR",
+        "context": "The fastest-growing geography in the category."
+      },
+      {
+        "value": "3",
+        "label": "Core trust promises",
+        "context": "Calculated, sourced, and non-fear-based."
+      }
+    ],
+    "skills": ["Problem framing", "Market research", "RAG strategy", "Trust design", "MVP scoping"],
+    "tags": ["AI Product", "Trust", "Consumer", "RAG", "Founder"],
+    "coverImage": "/images/projects/astrocure/cover.png",
+    "caseStudySlug": "astrocure",
+    "prd": {
+      "slug": "astrocure-prd",
+      "title": "AstroCure PRD",
+      "subtitle": "Product requirements, market case, fraud model, and MVP architecture.",
+      "summary": "A founder-written product document defining the trust problem in online astrology and the AI architecture needed to counter fear-based manipulation.",
+      "decisionFocus": "Frames fraud as an incentive-system problem and responds with transparent calculation, citations, and subscription-aligned incentives.",
+      "downloadable": "/files/prds/astrocure-prd.docx",
+      "tags": ["Market case", "Trust", "MVP", "RAG"]
+    },
+    "relatedProjects": ["documind"]
+  },
+  {
+    "slug": "documind",
+    "title": "DocuMind",
+    "subtitle": "Document intelligence for contracts and research papers.",
+    "domain": "Legal AI, research workflows, document intelligence",
+    "type": "Case Study",
+    "status": "published",
+    "featured": true,
+    "role": "Product Lead and Co-Builder",
+    "timeline": "Jan 2026 - Present",
+    "team": "Product and build collaboration",
+    "summary": "A dual-mode AI document intelligence platform that helps non-expert users understand legal agreements and research papers through grounded citations, risk scoring, and structured summaries.",
+    "problem": "Freelancers, students, and small businesses routinely sign or study complex documents without being able to verify what matters.",
+    "decisionFocus": "Use RAG over fine-tuning to prioritize traceability, build speed, and reliability for high-risk document comprehension.",
+    "outcome": "Validated on 60 real documents with a 4.2/5 user clarity rating and a responsible decision-support positioning.",
+    "metrics": [
+      {
+        "value": "60",
+        "label": "Documents validated",
+        "context": "30 contracts and 30 research papers."
+      },
+      {
+        "value": "4.2/5",
+        "label": "User clarity rating",
+        "context": "Measured after users reviewed AI-assisted document outputs."
+      },
+      {
+        "value": "60%",
+        "label": "Build-time reduction",
+        "context": "RAG was selected over fine-tuning for speed and reliability."
+      }
+    ],
+    "skills": ["User research", "RAG product strategy", "Risk scoring", "Product requirements", "Validation"],
+    "tags": ["Legal AI", "RAG", "Research", "B2C", "Validation"],
+    "coverImage": "/images/projects/documind/cover.png",
+    "caseStudySlug": "documind",
+    "prd": {
+      "slug": "documind-prd",
+      "title": "DocuMind PRD",
+      "subtitle": "AI document intelligence platform for contracts and research papers.",
+      "summary": "A product requirements document covering user pain, competitive gaps, technical architecture, tradeoffs, and validation for a dual-mode AI comprehension product.",
+      "decisionFocus": "Makes traceability the product center: every output must link back to the source document so users can verify claims.",
+      "downloadable": "/files/prds/documind-prd.docx",
+      "tags": ["Legal AI", "Research", "RAG", "Validation"]
+    },
+    "relatedProjects": ["astrocure"]
+  },
+  {
+    "slug": "new-project-template",
+    "title": "New Project Template",
+    "subtitle": "Example entry showing fallback behavior before MDX is created.",
+    "domain": "Template",
+    "type": "Case Study",
+    "status": "published",
+    "featured": false,
+    "role": "Product Lead",
+    "timeline": "Coming Soon",
+    "team": "TBD",
+    "summary": "Create `content/case-studies/new-project-template.mdx` to publish this case study page.",
+    "problem": "Placeholder project entry used to demonstrate content-first author workflow.",
+    "decisionFocus": "The UI renders from projects.json even when content is not yet written.",
+    "outcome": "When case study MDX is missing, the route shows a built-in coming-soon state.",
+    "metrics": [
+      {
+        "value": "1",
+        "label": "JSON entry needed",
+        "context": "Add metadata here first."
+      },
+      {
+        "value": "1",
+        "label": "Case-study MDX needed",
+        "context": "Then add content file with matching slug."
+      }
+    ],
+    "skills": ["Content ops", "Scalability"],
+    "tags": ["Template", "Workflow"],
+    "caseStudySlug": "new-project-template",
+    "relatedProjects": []
+  }
+]

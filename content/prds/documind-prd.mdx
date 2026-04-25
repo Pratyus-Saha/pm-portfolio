@@ -1,0 +1,62 @@
+## Problem
+
+People routinely sign or study complex documents without understanding the practical meaning of the text. Contracts, research papers, vendor agreements, and term sheets carry consequences that are difficult for non-experts to evaluate.
+
+Generic AI tools produce summaries, but summaries without citations create a new trust problem.
+
+## Goals
+
+- Help users understand complex documents quickly.
+- Ground every key output in the source document.
+- Provide structured clause and risk analysis for legal documents.
+- Provide structured contribution and method analysis for research papers.
+- Keep the product positioned as comprehension support, not professional legal advice.
+
+## Non-goals
+
+- Do not replace lawyers.
+- Do not generate legal advice.
+- Do not support every document type in v1.
+- Do not optimize for enterprise contract workflows before validating individual and SMB use cases.
+
+## Users
+
+Primary users:
+
+- Freelancers reviewing client contracts.
+- MSME owners reviewing vendor or service agreements.
+- Graduate students reading academic papers.
+- Early founders reviewing routine legal documents.
+
+## Requirements
+
+- PDF upload
+- Document parsing
+- Chunking and retrieval
+- Clause extraction
+- Risk scoring with explanation
+- Source citations
+- Plain-English summaries
+- Dual-mode legal and research analysis
+
+## Success Metrics
+
+- User clarity rating
+- Citation interaction rate
+- Time to first useful answer
+- Clause extraction accuracy
+- Repeat usage across multiple document types
+
+## Risks
+
+- Users may mistake comprehension support for legal advice.
+- Risk scores can feel authoritative if not explained carefully.
+- Poor document parsing can undermine trust in otherwise good AI output.
+
+## Launch Considerations
+
+Launch should focus on controlled document types and clear mode selection. The product should explain its role plainly: it helps users understand documents and identify issues to review further.
+
+## Reflection
+
+The strongest product decision in DocuMind is making provenance the center of the UX. Users trust the product because they can verify it, not because the interface asks them to.

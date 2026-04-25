@@ -1,0 +1,70 @@
+## Snapshot
+
+DocuMind is an AI-powered document intelligence platform for people who need to understand complex contracts and research papers without being domain experts. I led the product definition and co-built the system around source-grounded comprehension.
+
+<Callout>
+The product thesis: users do not simply need a shorter summary. They need a trustworthy explanation they can verify against the original document.
+</Callout>
+
+## Problem
+
+Freelancers, MSME owners, students, and early-stage founders regularly face documents they do not fully understand. A single clause can change ownership, payment rights, liability, renewal terms, or academic interpretation.
+
+Generic AI tools can summarize these documents, but they often fail where trust matters most:
+
+- No clear source tracing
+- Hallucinated clauses
+- Vague risk language
+- No structured output
+- No distinction between explanation and advice
+
+## Context
+
+Enterprise legal AI tools serve law firms and large companies. They are powerful, but inaccessible to individuals and small businesses. General chatbots are accessible, but not safe enough for document comprehension without provenance.
+
+DocuMind targets the underserved middle: users who do not need a full legal platform, but do need reliable comprehension before they make a decision.
+
+## Discovery
+
+The product started from a real observation: a friend signing a freelance contract without understanding IP ownership and indemnity clauses. That moment exposed a broader behavior. Many users sign, skim, or avoid documents because comprehension is expensive.
+
+The competitive review clarified that the gap was not AI availability. The gap was verifiable AI output.
+
+## Decisions
+
+<Decision>
+I chose RAG over fine-tuning because the product needed traceability, faster iteration, and lower hallucination risk more than it needed a heavily trained proprietary model.
+</Decision>
+
+The product was scoped as a decision-support tool, not a legal substitute. That positioning matters because the goal is comprehension, not replacing professional advice.
+
+## Tradeoffs
+
+The dual-mode scope was a meaningful product tradeoff. Supporting both legal documents and research papers expands user value, but it increases UX complexity. The design response was to keep the interaction model consistent while changing the output structure by mode.
+
+For contracts, the product emphasizes clauses, risk, and action items. For papers, it emphasizes contribution, method, evidence, and limitations.
+
+## Execution
+
+The MVP focuses on:
+
+- PDF upload
+- Document chunking
+- Retrieval-grounded answers
+- Clause extraction
+- Risk scoring with explanation
+- Citation-backed summaries
+- Plain-English translation
+- Action-oriented outputs
+
+Every major output needs to answer: where did this claim come from?
+
+## Impact
+
+DocuMind was validated on 60 real documents: 30 contracts and 30 research papers. The product achieved a 4.2/5 user clarity rating and showed that users responded strongly to source-linked explanations.
+
+The explicit RAG decision reduced build time by an estimated 60% while improving reliability for the MVP stage.
+
+## Learnings
+
+DocuMind reinforced that AI product quality is not just model quality. It is interaction design, trust design, scope discipline, and the ability to make uncertainty visible without overwhelming the user.
