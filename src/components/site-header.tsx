@@ -10,8 +10,8 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-4 py-5 md:px-6">
-      <nav className="mx-auto flex w-max items-center justify-between gap-3 rounded-full border border-[rgba(26,26,26,0.10)] bg-paper/96 px-3 py-2.5 shadow-[0_14px_40px_rgba(26,26,26,0.05)]">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 py-8 md:px-6">
+      <nav className="mx-auto flex w-max items-center justify-between gap-3 rounded-full border border-white/20 bg-white/40 backdrop-blur-md px-3 py-2.5 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
         <Link 
           href="/" 
           className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-foreground shadow-sm transition-transform hover:scale-105"
