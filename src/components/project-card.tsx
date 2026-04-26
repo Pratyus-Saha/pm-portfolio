@@ -1,8 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Pencil } from "lucide-react";
-import { TagList } from "@/components/tag-list";
+import { ArrowRight, Pencil, BrainCircuit } from "lucide-react";
 import type { Project } from "@/types/content";
-import { cn } from "@/lib/utils";
 
 export function ProjectCard({
   project,
@@ -11,78 +10,125 @@ export function ProjectCard({
   project: Project;
   editMode?: boolean;
 }) {
+  const imagePath = project.coverImage || `/images/projects/${project.slug}/cover.png`;
+
+  // Get a string of tags or domains separated by bullet
+  const tagsStr = project.tags?.length 
+    ? project.tags.slice(0, 3).join(' • ') 
+    : project.domain.split(',').map(d => d.trim()).join(' • ');
+
   return (
-    <article className="group flex min-h-[420px] flex-col justify-between rounded-[28px] border border-[var(--line)] bg-paper p-6 transition duration-200 hover:-translate-y-1 hover:bg-secondary">
-      <div>
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-sm font-medium text-foreground/60">{project.domain}</p>
-            <h3 className="mt-4 text-3xl font-semibold leading-none md:text-5xl">
-              <Link href={`/work/${project.slug}`} className="underline-offset-8 hover:underline">
-                {project.title}
-              </Link>
-            </h3>
-          </div>
-          <div className="flex items-center gap-2">
-            {editMode && (
-              <Link
-                href={`/work/${project.slug}?edit=true#author-panel`}
-                className="inline-flex rounded-full border border-[var(--line)] p-3 transition-colors hover:bg-accent"
-                aria-label={`Edit ${project.title}`}
-              >
-                <Pencil size={15} aria-hidden="true" />
-              </Link>
-            )}
-            <Link
-              href={`/work/${project.slug}`}
-              className="rounded-full border border-[var(--line)] p-3 transition-colors group-hover:bg-foreground group-hover:text-background"
-              aria-label={`Read ${project.title}`}
-            >
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-        <p className="mt-6 max-w-xl text-lg leading-8 text-foreground/72">{project.summary}</p>
-        {!project.coverImage && (
-          <p className="mt-4 rounded-full bg-secondary px-3 py-1 text-xs text-foreground/65">
-            Image placeholder: add files in <code>/public/images/projects/{project.slug}/</code>
-          </p>
-        )}
-      </div>
-      <div className="mt-10">
-        <div className="mb-6 grid gap-3 border-t border-[var(--line)] pt-6 sm:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase text-foreground/50">Decision focus</p>
-            <p className="mt-2 text-sm leading-6">{project.decisionFocus}</p>
-          </div>
-          <div>
-            <p className="text-xs uppercase text-foreground/50">Outcome</p>
-            <p className="mt-2 text-sm leading-6">{project.outcome}</p>
-          </div>
-        </div>
-        <TagList tags={project.tags.slice(0, 4)} />
-        <div className="mt-4 flex flex-wrap gap-2">
+    <article className="group/card relative flex h-[520px] w-full flex-col overflow-hidden rounded-[28px] border border-[var(--line)] bg-[#f6f4f0] p-4 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+      
+      {/* Full Card Link overlay */}
+      <Link href={`/work/${project.slug}`} className="absolute inset-0 z-10" aria-label={`View ${project.title}`} />
+
+      {/* Edit Button */}
+      {editMode && (
+        <div className="absolute right-6 top-6 z-30">
           <Link
-            href={`/work/${project.slug}`}
-            className={cn(
-              "rounded-full border border-[var(--line)] px-3 py-1.5 text-xs transition-colors hover:bg-accent"
-            )}
+            href={`/admin/#/collections/case-studies/entries/${project.slug}`}
+            target="_blank"
+            className="inline-flex rounded-full bg-white/90 p-2 shadow-sm backdrop-blur-sm transition-transform hover:scale-110"
+            aria-label={`Edit ${project.title}`}
           >
-            Case Study
+            <Pencil size={14} aria-hidden="true" />
           </Link>
-          {project.prd ? (
-            <Link
-              href={`/artifacts/${project.prd.slug}`}
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs transition-colors hover:bg-accent"
-            >
-              PRD
-            </Link>
-          ) : (
-            <span className="rounded-full border border-dashed border-[var(--line)] px-3 py-1.5 text-xs text-foreground/55">
-              PRD Coming Soon
-            </span>
-          )}
         </div>
+      )}
+
+      {/* Image Banner (Shrinks on Hover) */}
+      <div className="relative w-full shrink-0 overflow-hidden rounded-[20px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] h-[320px] group-hover/card:h-[110px]">
+        {/* Placeholder gradient just in case */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#e6e2db] to-[#d8d3ca]" />
+        <Image
+          src={imagePath}
+          alt={`Cover for ${project.title}`}
+          fill
+          className="object-cover transition-transform duration-1000 ease-out group-hover/card:scale-105"
+        />
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex flex-1 flex-col px-3 pt-6 pb-2">
+        
+        {/* Tags Row (Reveals on Hover) */}
+        <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/card:grid-rows-[1fr] group-hover/card:opacity-100">
+          <div className="overflow-hidden">
+            <p className="mb-4 text-sm font-medium text-foreground/50">
+              {tagsStr}
+            </p>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-[2.5rem] font-serif tracking-tight text-foreground transition-all duration-700 leading-none">
+          {project.title}
+        </h3>
+        
+        {/* Summary */}
+        <p className="mt-4 text-[1.05rem] leading-relaxed text-foreground/75 line-clamp-4 group-hover/card:line-clamp-2 transition-all duration-700">
+          {project.summary}
+        </p>
+
+        {/* Expanding Bottom Section (Reveals on Hover) */}
+        <div className="mt-auto grid grid-rows-[0fr] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/card:grid-rows-[1fr] group-hover/card:opacity-100">
+          <div className="overflow-hidden">
+            <div className="mt-6 flex flex-col gap-4">
+              
+              {/* Divider */}
+              <div className="h-[1px] w-full bg-black/5" />
+
+              {/* Grid for Decision Focus & Outcome */}
+              <div className="grid grid-cols-2 gap-4 pb-2">
+                <div className="border-r border-black/5 pr-4">
+                  <div className="flex items-center gap-2 text-[0.95rem] font-medium text-foreground">
+                    <BrainCircuit size={18} className="text-foreground/70" /> Decision Focus
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60 line-clamp-3">
+                    {project.decisionFocus}
+                  </p>
+                </div>
+                <div className="pl-2">
+                  <div className="flex items-center gap-2 text-[0.95rem] font-medium text-foreground">
+                    <ArrowRight size={18} className="text-foreground/70" /> Outcome
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60 line-clamp-3">
+                    {project.outcome}
+                  </p>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="h-[1px] w-full bg-black/5" />
+
+              {/* Bottom Links (Case Study & PRD) */}
+              <div className="flex items-center justify-between pt-2">
+                <Link 
+                  href={`/work/${project.slug}`}
+                  className="group/link relative z-20 flex items-center gap-2 text-[1.05rem] font-medium text-foreground transition-colors hover:text-foreground/70"
+                >
+                  Case Study <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
+                </Link>
+                
+                {project.prd ? (
+                  <Link 
+                    href={`/artifacts/${project.prd.slug}`}
+                    className="group/link relative z-20 flex items-center gap-2 text-[1.05rem] font-medium text-foreground transition-colors hover:text-foreground/70"
+                  >
+                    PRD <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
+                  </Link>
+                ) : (
+                  <span className="relative z-20 flex items-center gap-2 text-[1.05rem] font-medium text-foreground/30 line-through">
+                    PRD <ArrowRight size={16} />
+                  </span>
+                )}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   );

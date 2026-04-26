@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Brain, Gauge, Hand, ShieldCheck, Globe, Mail, MessageCircle, FileText } from "lucide-react";
+import { HeroPortrait } from "@/components/hero-portrait";
+import { AboutPortrait } from "@/components/about-portrait";
+import { ArrowUpRight, Brain, Gauge, Hand, ShieldCheck, Globe, Mail, MessageCircle, FileText, Users, Target, PenTool, Rocket, RefreshCcw } from "lucide-react";
+import { AnimatedGreeting } from "@/components/animated-greeting";
 import { AuthorEditPanel } from "@/components/author-edit-panel";
 import { ArtifactCard } from "@/components/artifact-card";
 import { ButtonLink } from "@/components/button-link";
 import { FadeIn } from "@/components/fade-in";
-import { ProjectCard } from "@/components/project-card";
+import { ProjectCarousel } from "@/components/project-carousel";
 import { Section } from "@/components/section";
 import { isEditMode } from "@/lib/content/edit-mode";
 import { getFeaturedArtifacts, getFeaturedProjects } from "@/lib/content/projects";
@@ -15,19 +18,34 @@ import { siteConfig } from "@/lib/site/config";
 
 const principles = [
   {
-    icon: Brain,
-    title: "Frame the real problem",
-    copy: "I separate surface feature requests from the deeper user, market, and incentive problems shaping behavior.",
+    icon: Users,
+    title: "Start with the User",
+    copy: "Talk directly to the people using your product. Find out exactly what they want to achieve and where they get stuck. Base your decisions on these conversations instead of guessing what they need.",
+    tags: ["USER RESEARCH", "EMPATHY", "INTERVIEWS", "INSIGHTS", "DISCOVERY"],
   },
   {
-    icon: ShieldCheck,
-    title: "Design for trust",
-    copy: "My AI product work emphasizes source tracing, responsible framing, and reducing user harm in ambiguous domains.",
+    icon: Target,
+    title: "Define the Core Problem",
+    copy: "Identify the exact problem you have to solve. Review the long list of feature requests, then set it aside. Focus on fixing the single issue that actually improves the business and helps your users.",
+    tags: ["PROBLEM FRAMING", "STRATEGY", "FOCUS", "PRIORITIZATION", "ROOT CAUSE"],
   },
   {
-    icon: Gauge,
-    title: "Prioritize for proof",
-    copy: "I scope MVPs around the smallest product experience that can validate the riskiest belief.",
+    icon: PenTool,
+    title: "Design the Right Solution",
+    copy: "Shape your work around actual user needs and your team's technical limits. Keep the interface simple to use. Ensure the product works today while leaving room for future updates.",
+    tags: ["SYSTEMS DESIGN", "UX", "ARCHITECTURE", "SIMPLICITY", "SCALABILITY"],
+  },
+  {
+    icon: Rocket,
+    title: "Prioritize for Impact",
+    copy: "Test your idea quickly. Build the smallest possible version of your product that still gets the job done. This approach lets you confirm the concept works before your team spends six months writing code.",
+    tags: ["MVP", "VALIDATION", "SPEED", "EXECUTION", "LEAN"],
+  },
+  {
+    icon: RefreshCcw,
+    title: "Execute, Learn, Iterate",
+    copy: "Release your work to the public early. Look at your daily active user numbers and read the direct feedback. Make your next round of changes based entirely on how people actually interact with the software.",
+    tags: ["DATA-DRIVEN", "FEEDBACK LOOP", "METRICS", "ITERATION", "GROWTH"],
   },
 ];
 
@@ -49,45 +67,25 @@ export default async function Home({ searchParams }: HomePageProps) {
             <div className="flex min-h-[calc(100vh-160px)] flex-col items-center justify-center">
               <div className="relative flex w-full max-w-[1200px] flex-col items-center lg:flex-row lg:justify-center">
                 
-                {/* Left Column Text */}
-                <div className="z-10 flex flex-col items-center text-center lg:absolute lg:left-0 lg:items-start lg:text-left lg:-translate-x-12">
-                  <p className="mb-1 text-sm font-semibold uppercase tracking-[0.2em] text-foreground/80 lg:mb-2 lg:pl-2">
+                {/* Left Column Text (Sits beside image) */}
+                <div className="z-20 flex flex-col items-center text-center lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:items-start lg:text-left lg:-translate-x-0 xl:-translate-x-4">
+                  <p className="mb-2 text-2xl font-bold uppercase tracking-[0.2em] text-foreground/80 lg:absolute lg:-top-10 lg:left-2 lg:mb-0 lg:whitespace-nowrap">
                     Pratyus Saha
                   </p>
-                  <h1 className="hero-condensed text-[clamp(4.5rem,10vw,10.5rem)] leading-[0.85] text-foreground tracking-tight">
+                  <h1 className="hero-condensed text-[clamp(3.5rem,8vw,8rem)] leading-[0.8] text-foreground tracking-tight drop-shadow-sm">
                     PRODUCT
                   </h1>
                 </div>
 
                 {/* Center Image */}
-                <div className="relative z-0 mx-auto mt-12 w-full max-w-[400px] lg:mt-0">
-                  {/* Top Right Dot */}
-                  <div className="absolute -right-2 -top-6 h-4 w-4 rounded-full bg-[#6b72e1]" />
-                  
-                  {/* Portrait */}
-                  <div className="relative aspect-[0.7] w-full overflow-hidden rounded-[32px] bg-[#e6e2db]">
-                    <Image
-                      src="/images/profile/pratyus-saha.png"
-                      alt="Portrait of Pratyus Saha"
-                      fill
-                      priority
-                      className="object-cover object-bottom transition duration-500 hover:scale-[1.02]"
-                      sizes="(min-width: 1024px) 400px, 90vw"
-                    />
-                  </div>
+                <HeroPortrait />
 
-                  {/* Bottom Left Hand Badge */}
-                  <div className="absolute -bottom-8 -left-10 flex h-[100px] w-[100px] items-center justify-center rounded-full bg-[#6b72e1] text-white shadow-[0_20px_40px_rgba(107,114,225,0.3)] transition-transform hover:scale-105">
-                    <Hand size={42} strokeWidth={2.5} />
-                  </div>
-                </div>
-
-                {/* Right Column Text */}
-                <div className="z-10 mt-16 flex flex-col items-center text-center lg:absolute lg:right-0 lg:mt-0 lg:items-end lg:text-right lg:translate-x-12">
-                  <h2 className="hero-condensed text-[clamp(4.5rem,10vw,10.5rem)] leading-[0.85] text-foreground tracking-tight">
+                {/* Right Column Text (Sits beside image) */}
+                <div className="z-20 mt-16 flex flex-col items-center text-center lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:mt-0 lg:items-end lg:text-right lg:translate-x-4 xl:translate-x-8">
+                  <h2 className="hero-condensed text-[clamp(3.5rem,8vw,8rem)] leading-[0.8] text-foreground tracking-tight drop-shadow-sm">
                     MANAGER
                   </h2>
-                  <p className="mt-4 max-w-[280px] text-[1.05rem] leading-relaxed text-foreground/70 lg:mt-5 lg:max-w-[300px]">
+                  <p className="mt-4 max-w-[280px] text-[1.2rem] leading-relaxed text-foreground/75 lg:absolute lg:-bottom-20 lg:right-0 lg:mt-0 lg:max-w-[360px]">
                     I build digital products that solve real problems and create real impact.
                   </p>
                 </div>
@@ -106,26 +104,75 @@ export default async function Home({ searchParams }: HomePageProps) {
 
       <Section eyebrow="Featured work" title="Two flagship product stories, built around decisions.">
         {editMode && <AuthorEditPanel scope="listing" className="mb-6" />}
-        <div className="grid gap-4 lg:grid-cols-2">
-          {projects.map((project, index) => (
-            <FadeIn key={project.slug} delay={index * 0.08}>
-              <ProjectCard project={project} editMode={editMode} />
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn delay={0.1}>
+          <ProjectCarousel projects={projects} editMode={editMode} />
+        </FadeIn>
+        
+        <FadeIn delay={0.2}>
+          <div className="mt-16 flex justify-center">
+            <ButtonLink 
+              href="/work" 
+              variant="default" 
+              className="group relative overflow-hidden rounded-full bg-foreground text-background px-10 py-4 text-base font-medium tracking-wide transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(26,26,26,0.3)]"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                View all featured work
+                <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </span>
+            </ButtonLink>
+          </div>
+        </FadeIn>
       </Section>
 
-      <Section eyebrow="Operating model" title="How I move from ambiguity to product clarity." tone="accent">
-        <div className="grid gap-4 md:grid-cols-3">
-          {principles.map((principle) => (
-            <div key={principle.title} className="rounded-[24px] border border-[var(--line)] bg-paper/70 p-6">
-              <principle.icon size={24} aria-hidden="true" />
-              <h3 className="mt-8 text-2xl font-semibold">{principle.title}</h3>
-              <p className="mt-4 text-sm leading-6 text-foreground/68">{principle.copy}</p>
-            </div>
-          ))}
+      <section className="relative bg-[#0a0a0a] py-40 overflow-clip rounded-[40px] mx-4 my-16 md:mx-8">
+        <div className="relative z-20 mx-auto max-w-[1200px] px-6 text-center mb-32">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/50 mb-4">Operating Model</p>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white max-w-3xl mx-auto leading-[1.1]">
+            How I move from ambiguity to product clarity.
+          </h2>
         </div>
-      </Section>
+
+        {/* Sticky Background Text */}
+        <div className="sticky top-1/3 flex w-full items-center justify-center pointer-events-none opacity-10 px-4">
+          <h2 className="hero-condensed text-[clamp(4rem,10.5vw,14rem)] font-black leading-[0.8] text-white tracking-tight whitespace-nowrap scale-y-[1.8] origin-center">
+            PRODUCT PHILOSOPHY
+          </h2>
+        </div>
+
+        {/* Stacking Cards Container */}
+        <div className="relative z-10 mx-auto -mt-[20vh] max-w-[800px] px-6 pb-40">
+          {principles.map((principle, index) => {
+            const rotateClasses = ['-rotate-[2deg]', 'rotate-[1.5deg]', '-rotate-[1deg]', 'rotate-[2deg]', '-rotate-[1.5deg]'];
+            const rotateClass = rotateClasses[index % rotateClasses.length];
+            const topOffset = 150 + (index * 40); // Staggered stickiness: 150px, 190px, 230px, 270px, 310px
+            
+            return (
+              <div 
+                key={principle.title}
+                className={`sticky mb-40 w-full rounded-[24px] bg-white p-10 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 hover:scale-[1.02] ${rotateClass}`}
+                style={{ top: `${topOffset}px` }}
+              >
+                <div className="flex flex-col gap-8">
+                  <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-black">
+                    {principle.title}
+                  </h3>
+                  <div className="h-[1px] w-full bg-black/10" />
+                  <p className="text-lg md:text-xl leading-relaxed text-black/70 max-w-2xl">
+                    {principle.copy}
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    {principle.tags.map(tag => (
+                      <span key={tag} className="rounded-full border border-black/15 px-4 py-2 text-xs font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-colors cursor-default">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       <Section eyebrow="Artifacts" title="Product documents as evidence, not attachments.">
         <div className="grid gap-4 md:grid-cols-2">
@@ -191,21 +238,7 @@ export default async function Home({ searchParams }: HomePageProps) {
               </div>
 
               {/* Right Column */}
-              <div className="relative mx-auto w-full max-w-[420px]">
-                {/* Floating dot */}
-                <div className="absolute -left-12 top-1/2 h-[18px] w-[18px] -translate-y-1/2 rounded-full bg-[#6b72e1]" />
-                
-                {/* Tilted Portrait */}
-                <div className="relative aspect-[0.75] w-full overflow-hidden rounded-[32px] bg-[#e6e2db] transform rotate-2 transition-transform hover:rotate-0 duration-500 shadow-xl">
-                  <Image
-                    src="/images/profile/pratyus-saha.png"
-                    alt="Portrait of Pratyus Saha"
-                    fill
-                    className="object-cover object-bottom"
-                    sizes="(min-width: 1024px) 420px, 90vw"
-                  />
-                </div>
-              </div>
+              <AboutPortrait />
             </div>
 
             {/* Toggle Placeholder */}

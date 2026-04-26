@@ -30,7 +30,8 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
         {editMode && (
           <div className="mb-6 flex flex-col gap-4">
             <Link
-              href="/work?edit=true#author-panel"
+              href="/admin/#/collections/case-studies/new"
+              target="_blank"
               className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--line)] bg-paper px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
             >
               <Plus size={14} aria-hidden="true" />

@@ -12,14 +12,14 @@ export function SiteHeader() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 py-5 md:px-6">
       <nav className="mx-auto flex w-max items-center justify-between gap-3 rounded-full border border-[rgba(26,26,26,0.10)] bg-paper/96 px-3 py-2.5 shadow-[0_14px_40px_rgba(26,26,26,0.05)]">
-        <Link href="/" className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-          <Image
-            src="/images/profile/pratyus-saha.png"
-            alt="Profile"
-            fill
-            className="object-cover"
-            sizes="44px"
-          />
+        <Link 
+          href="/" 
+          className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-foreground shadow-sm transition-transform hover:scale-105"
+          aria-label="Home"
+        >
+          <span className="text-[13px] font-bold tracking-[0.1em] text-background ml-[2px] group-hover:opacity-80 transition-opacity">
+            PS
+          </span>
         </Link>
         <div className="flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto px-2">
           {navItems.filter(item => item.label !== "Contact").map((item) => {

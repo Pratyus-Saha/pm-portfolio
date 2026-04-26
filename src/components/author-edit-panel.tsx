@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { Pencil, Plus, Upload } from "lucide-react";
+import { Pencil, Plus, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import type { Project } from "@/types/content";
-import { getProjectAuthorPaths } from "@/lib/content/edit-mode";
 
 export function AuthorEditPanel({
   project,
@@ -12,53 +12,39 @@ export function AuthorEditPanel({
   scope?: "project" | "listing" | "artifact";
   className?: string;
 }) {
-  const paths = project ? getProjectAuthorPaths(project) : null;
+  const isPrd = scope === "artifact";
+  const collection = isPrd ? "prds" : "case-studies";
+  
+  const editLink = project 
+    ? `/admin/#/collections/${collection}/entries/${isPrd && project.prd ? project.prd.slug : project.slug}` 
+    : `/admin/#/collections/${collection}`;
+    
+  const addLink = `/admin/#/collections/${collection}/new`;
 
-  const title =
-    scope === "listing"
-      ? "Author mode: project publishing workflow"
-      : scope === "artifact"
-        ? "Author mode: PRD editing"
-        : "Author mode: case-study editing";
-
-  const firstStep: ReactNode =
-    scope === "listing" ? (
-      <li>Create an MDX file in <code>/content/case-studies/</code> and name it with your post slug.</li>
-    ) : (
-      <li>
-        Edit the MDX content directly:
-        <code className="ml-2">{scope === "artifact" ? paths?.prdPath : paths?.caseStudyPath}</code>
-      </li>
-    );
+  const title = "Author mode: CMS Editing";
 
   return (
     <aside
       className={`rounded-[24px] border border-[var(--line)] bg-accent/80 p-5 text-sm leading-6 text-foreground/82 ${className ?? ""}`}
       id="author-panel"
     >
-      <p className="text-xs font-medium uppercase tracking-wide">Private author mode</p>
+      <p className="text-xs font-medium uppercase tracking-wide">CMS Admin Controls</p>
       <h3 className="mt-2 text-xl font-semibold">{title}</h3>
-      <ul className="mt-4 list-disc pl-5">
-        {firstStep}
-        <li>
-          Add or update metadata in <code>{paths?.jsonPath ?? "/data/projects.json"}</code>.
-        </li>
-        {scope !== "artifact" && (
-          <li>
-            For new images, drop files into <code>{paths?.imageDir ?? "/public/images/projects/<slug>/"}</code>.
-          </li>
-        )}
-      </ul>
+      <p className="mt-2 text-foreground/70">
+        You can now edit all content, metrics, tags, and images visually using the CMS dashboard.
+      </p>
       <div className="mt-5 flex flex-wrap gap-2">
-        <span className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5">
-          <Pencil size={14} /> Edit
-        </span>
-        <span className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5">
-          <Plus size={14} /> Add New Project
-        </span>
-        <span className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5">
-          <Upload size={14} /> Upload Image
-        </span>
+        {project && (
+          <Link href={editLink} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5 hover:bg-background transition-colors">
+            <Pencil size={14} /> Edit This Entry
+          </Link>
+        )}
+        <Link href={addLink} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5 hover:bg-background transition-colors">
+          <Plus size={14} /> Add New Entry
+        </Link>
+        <Link href="/admin" target="_blank" className="inline-flex items-center gap-1 rounded-full border border-[var(--line)] bg-paper px-3 py-1.5 hover:bg-background transition-colors">
+          <ExternalLink size={14} /> Open Full CMS
+        </Link>
       </div>
       <p className="mt-4 text-xs text-foreground/70">
         Edit mode is hidden unless <code>?edit=true</code> is present. In production you can lock it with{" "}
