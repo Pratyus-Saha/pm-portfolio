@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroPortrait } from "@/components/hero-portrait";
 import { AboutPortrait } from "@/components/about-portrait";
-import { ArrowUpRight, Brain, Gauge, Hand, ShieldCheck, Globe, Mail, MessageCircle, FileText, Users, Target, PenTool, Rocket, RefreshCcw } from "lucide-react";
+import { ArrowUpRight, FileText, Globe, Mail, MessageCircle, Sparkles } from "lucide-react";
+import { Counter } from "@/components/counter";
 import { AnimatedGreeting } from "@/components/animated-greeting";
 import { AuthorEditPanel } from "@/components/author-edit-panel";
 import { ArtifactCard } from "@/components/artifact-card";
@@ -182,72 +183,115 @@ export default async function Home({ searchParams }: HomePageProps) {
         </div>
       </Section>
 
-      <section className="px-6 py-20 md:px-8 md:py-32 bg-white rounded-[40px] mx-4 my-8 md:mx-8 shadow-[0_4px_40px_rgba(0,0,0,0.03)] border border-[rgba(26,26,26,0.05)]">
-        <div className="mx-auto max-w-[1200px]">
-          <FadeIn>
-            <div className="grid gap-16 lg:grid-cols-[1fr_420px] lg:gap-24 items-center">
-              {/* Left Column */}
-              <div>
-                <h2 className="hero-condensed text-[clamp(4rem,8vw,6rem)] leading-[0.85] text-foreground tracking-tight">
+      {/* ABOUT ME SECTION - REDESIGNED */}
+      <section className="relative overflow-hidden px-4 py-24 md:px-8 md:py-40">
+        {/* Animated Background Mesh */}
+        <div className="absolute inset-0 -z-10 bg-white">
+          <div className="absolute -left-[10%] -top-[10%] h-[500px] w-[500px] animate-[pulse_8s_ease-in-out_infinite] rounded-full bg-[#6b72e1]/10 blur-[120px]" />
+          <div className="absolute -right-[5%] bottom-[0%] h-[400px] w-[400px] animate-[pulse_10s_ease-in-out_infinite_1s] rounded-full bg-[#8e94f2]/10 blur-[100px]" />
+        </div>
+
+        <div className="mx-auto max-w-[1300px]">
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-24 items-start">
+            
+            {/* Left Content Column */}
+            <div className="relative">
+              <FadeIn>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#6b72e1]/20 bg-[#6b72e1]/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#6b72e1]">
+                  <Sparkles size={14} />
+                  <span>The Builder Story</span>
+                </div>
+                
+                <h2 className="hero-condensed mt-8 text-[clamp(4.5rem,10vw,8rem)] leading-[0.8] text-foreground tracking-tight">
                   ABOUT ME
                 </h2>
-                <p className="mt-6 text-[1.1rem] leading-relaxed text-foreground/70 max-w-[500px]">
-                  Hi, I'm Pratyus — a product manager and builder passionate about crafting meaningful and impactful digital products.
-                </p>
 
-                {/* Metrics */}
-                <div className="mt-12 grid grid-cols-3 gap-4 md:gap-6">
-                  <div>
-                    <p className="hero-condensed text-[3.5rem] leading-none text-[#6b72e1]">2<span className="text-3xl">+</span></p>
-                    <p className="mt-2 text-sm font-bold text-foreground">Years of PM Experience</p>
+                <div className="mt-12 space-y-8">
+                  <div className="relative rounded-[32px] border border-white/40 bg-white/30 p-8 md:p-10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.02)]">
+                    <p className="text-xl md:text-2xl leading-relaxed text-foreground/80 font-medium">
+                      Hi, I'm Pratyus — a product manager and builder obsessed with the intersection of <span className="text-foreground">human experience</span> and <span className="text-foreground">scalable engineering</span>.
+                    </p>
                   </div>
-                  <div>
-                    <p className="hero-condensed text-[3.5rem] leading-none text-[#6b72e1]">4</p>
-                    <p className="mt-2 text-sm font-bold text-foreground">Flagship Products</p>
-                  </div>
-                  <div>
-                    <p className="hero-condensed text-[3.5rem] leading-none text-[#6b72e1]">60<span className="text-3xl">+</span></p>
-                    <p className="mt-2 text-sm font-bold text-foreground">Documents Validated</p>
+
+                  {/* High-Impact Metrics Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="rounded-[24px] bg-[#6b72e1] p-6 text-white shadow-lg shadow-[#6b72e1]/20 transition-transform hover:scale-[1.03]">
+                      <div className="flex items-baseline gap-1">
+                        <span className="hero-condensed text-5xl leading-none"><Counter value={2} /></span>
+                        <span className="text-2xl font-bold">+</span>
+                      </div>
+                      <p className="mt-3 text-xs font-bold uppercase tracking-widest opacity-80">Years Experience</p>
+                    </div>
+                    
+                    <div className="rounded-[24px] border border-[var(--line)] bg-white/50 p-6 backdrop-blur-md transition-transform hover:scale-[1.03]">
+                      <div className="flex items-baseline gap-1 text-foreground">
+                        <span className="hero-condensed text-5xl leading-none"><Counter value={4} /></span>
+                      </div>
+                      <p className="mt-3 text-xs font-bold uppercase tracking-widest text-foreground/60">Flagship Products</p>
+                    </div>
+
+                    <div className="rounded-[24px] border border-[var(--line)] bg-white/50 p-6 backdrop-blur-md transition-transform hover:scale-[1.03]">
+                      <div className="flex items-baseline gap-1 text-foreground">
+                        <span className="hero-condensed text-5xl leading-none"><Counter value={60} /></span>
+                        <span className="text-2xl font-bold">+</span>
+                      </div>
+                      <p className="mt-3 text-xs font-bold uppercase tracking-widest text-foreground/60">Docs Validated</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Contact Row */}
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 border-b border-[var(--line)] pb-8">
+                {/* Refined Contact Info */}
+                <div className="mt-16 flex flex-wrap items-center gap-x-12 gap-y-8 border-t border-[var(--line)] pt-12">
                   <div>
-                    <p className="text-sm font-bold text-foreground">Call Today :</p>
-                    <p className="mt-1 text-foreground/70">{siteConfig.phone}</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Direct Line</p>
+                    <p className="mt-2 text-lg font-bold text-foreground">{siteConfig.phone}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-foreground">Email :</p>
-                    <p className="mt-1 text-foreground/70">{siteConfig.email}</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Email Correspondence</p>
+                    <p className="mt-2 text-lg font-bold text-foreground">{siteConfig.email}</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    {[
+                      { icon: MessageCircle, href: siteConfig.github },
+                      { icon: Globe, href: siteConfig.github },
+                      { icon: FileText, href: siteConfig.linkedin },
+                      { icon: Mail, href: `mailto:${siteConfig.email}` }
+                    ].map((social, i) => (
+                      <a 
+                        key={i}
+                        href={social.href} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="group flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line)] bg-white transition-all hover:scale-110 hover:border-[#6b72e1] hover:text-[#6b72e1]"
+                      >
+                        <social.icon size={20} />
+                      </a>
+                    ))}
                   </div>
                 </div>
-
-                {/* Social & CTA */}
-                <div className="mt-8 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-6">
-                    <a href={siteConfig.github} target="_blank" rel="noreferrer" className="text-foreground transition-colors hover:text-[#6b72e1]"><MessageCircle size={24} strokeWidth={2.5} /></a>
-                    <a href={siteConfig.github} target="_blank" rel="noreferrer" className="text-foreground transition-colors hover:text-[#6b72e1]"><Globe size={24} strokeWidth={2.5} /></a>
-                    <a href={siteConfig.linkedin} target="_blank" rel="noreferrer" className="text-foreground transition-colors hover:text-[#6b72e1]"><FileText size={24} strokeWidth={2.5} /></a>
-                    <a href={`mailto:${siteConfig.email}`} className="text-foreground transition-colors hover:text-[#6b72e1]"><Mail size={24} strokeWidth={2.5} /></a>
-                  </div>
-                  <ButtonLink href="/about" variant="outline" className="rounded-full border-[#6b72e1] px-8 py-3 text-[#6b72e1] hover:bg-[#6b72e1] hover:text-white uppercase tracking-wider font-semibold text-sm transition-all duration-300">
-                    MY STORY
-                  </ButtonLink>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <AboutPortrait />
+              </FadeIn>
             </div>
 
-            {/* Toggle Placeholder */}
-            <div className="mt-20 flex justify-center">
-              <div className="flex h-[30px] w-[52px] items-center rounded-full bg-[#6b72e1] p-[3px] shadow-sm cursor-pointer transition-transform hover:scale-105">
-                <div className="h-6 w-6 rounded-full bg-white shadow-sm transition-transform" />
-              </div>
+            {/* Sticky Portrait Column */}
+            <div className="lg:sticky lg:top-32">
+              <FadeIn delay={0.2}>
+                <div className="relative">
+                  <div className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-tr from-[#6b72e1]/10 to-transparent blur-2xl" />
+                  <AboutPortrait />
+                  <div className="mt-12 flex justify-center">
+                    <ButtonLink 
+                      href="/about" 
+                      className="group flex items-center gap-3 rounded-full bg-[#1c1c1c] px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-black shadow-xl"
+                    >
+                      <span>The Full Story</span>
+                      <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </ButtonLink>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
-          </FadeIn>
+
+          </div>
         </div>
       </section>
     </main>
