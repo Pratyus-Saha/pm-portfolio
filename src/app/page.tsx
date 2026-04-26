@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroPortrait } from "@/components/hero-portrait";
 import { AboutPortrait } from "@/components/about-portrait";
-import { ArrowUpRight, FileText, Globe, Mail, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowUpRight, FileText, Globe, Mail, MessageCircle, Sparkles, Users, Target, PenTool, Rocket, RefreshCcw } from "lucide-react";
 import { Counter } from "@/components/counter";
 import { AnimatedGreeting } from "@/components/animated-greeting";
 import { AuthorEditPanel } from "@/components/author-edit-panel";
