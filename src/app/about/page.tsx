@@ -39,7 +39,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#f8f5ef] pb-32 pt-32 overflow-x-hidden">
+    <main className="min-h-screen bg-[#edf2f4]   pb-0 pt-32 overflow-x-hidden">
       {/* 1. EDITORIAL HERO SECTION */}
       <section className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-[1400px]">
@@ -50,7 +50,7 @@ export default function AboutPage() {
                   The Mindset
                 </span>
                 <h1 className="hero-condensed mt-4 text-[clamp(4rem,12vw,9rem)] leading-[0.8] text-foreground tracking-tighter">
-                  CLARITY.<br/>TRUST.<br/>EXECUTION.
+                  CLARITY.<br />TRUST.<br />EXECUTION.
                 </h1>
                 <p className="mt-12 text-2xl leading-relaxed text-foreground/80 max-w-2xl font-medium italic">
                   "I don't just build products; I build bridges between complex problems and practical, human-centric solutions."
@@ -90,10 +90,10 @@ export default function AboutPage() {
               Operating Principles
             </h2>
           </FadeIn>
-          
+
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[240px]">
             {/* Bento Card 1: Large */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8 }}
               className="md:col-span-2 md:row-span-2 rounded-[40px] bg-white p-10 md:p-16 border border-black/5 shadow-[0_4px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between group"
             >
@@ -112,7 +112,7 @@ export default function AboutPage() {
             </motion.div>
 
             {/* Bento Card 2: Small */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8 }}
               className="rounded-[40px] bg-[#6b72e1] p-8 text-white flex flex-col justify-between"
             >
@@ -126,7 +126,7 @@ export default function AboutPage() {
             </motion.div>
 
             {/* Bento Card 3: Small */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8 }}
               className="rounded-[40px] bg-white p-8 border border-black/5 shadow-[0_4px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between"
             >
@@ -140,7 +140,7 @@ export default function AboutPage() {
             </motion.div>
 
             {/* Bento Card 4: Horizontal Medium */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8 }}
               className="md:col-span-3 rounded-[40px] bg-paper border border-black/5 p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 group"
             >
@@ -162,7 +162,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. FINAL PHILOSOPHY SECTION */}
-      <section className="mt-40 px-6 md:px-12 lg:px-24 pb-20">
+      <section className="mt-40 px-6 md:px-12 lg:px-24 pb-20 ">
         <div className="mx-auto max-w-[1400px] text-center">
           <FadeIn>
             <div className="inline-block h-1 w-24 bg-[#6b72e1] mb-12" />

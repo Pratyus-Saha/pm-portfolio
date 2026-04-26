@@ -66,7 +66,7 @@ export default async function Home({ searchParams }: HomePageProps) {
           <FadeIn>
             <div className="flex min-h-[calc(100vh-160px)] flex-col items-center justify-center">
               <div className="relative flex w-full max-w-[1200px] flex-col items-center lg:flex-row lg:justify-center">
-                
+
                 {/* Left Column Text (Sits beside image) */}
                 <div className="z-20 flex flex-col items-center text-center lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:items-start lg:text-left lg:-translate-x-0 xl:-translate-x-4">
                   <p className="mb-2 text-2xl font-bold uppercase tracking-[0.2em] text-foreground/80 lg:absolute lg:-top-10 lg:left-2 lg:mb-0 lg:whitespace-nowrap">
@@ -107,12 +107,12 @@ export default async function Home({ searchParams }: HomePageProps) {
         <FadeIn delay={0.1}>
           <ProjectCarousel projects={projects} editMode={editMode} />
         </FadeIn>
-        
+
         <FadeIn delay={0.2}>
           <div className="mt-16 flex justify-center">
-            <ButtonLink 
-              href="/work" 
-              variant="solid" 
+            <ButtonLink
+              href="/work"
+              variant="solid"
               className="group relative overflow-hidden rounded-full bg-foreground text-background px-10 py-4 text-base font-medium tracking-wide transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(26,26,26,0.3)]"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -145,9 +145,9 @@ export default async function Home({ searchParams }: HomePageProps) {
             const rotateClasses = ['-rotate-[2deg]', 'rotate-[1.5deg]', '-rotate-[1deg]', 'rotate-[2deg]', '-rotate-[1.5deg]'];
             const rotateClass = rotateClasses[index % rotateClasses.length];
             const topOffset = 150 + (index * 40); // Staggered stickiness: 150px, 190px, 230px, 270px, 310px
-            
+
             return (
-              <div 
+              <div
                 key={principle.title}
                 className={`sticky mb-40 w-full rounded-[24px] bg-white p-10 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 hover:scale-[1.02] ${rotateClass}`}
                 style={{ top: `${topOffset}px` }}
@@ -242,7 +242,7 @@ export default async function Home({ searchParams }: HomePageProps) {
             </div>
 
             {/* Toggle Placeholder */}
-            <div className="mt-20 flex justify-center">
+            <div className="mt-20 flex justify-center ">
               <div className="flex h-[30px] w-[52px] items-center rounded-full bg-[#6b72e1] p-[3px] shadow-sm cursor-pointer transition-transform hover:scale-105">
                 <div className="h-6 w-6 rounded-full bg-white shadow-sm transition-transform" />
               </div>
