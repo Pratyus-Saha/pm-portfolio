@@ -112,7 +112,7 @@ export default async function Home({ searchParams }: HomePageProps) {
           <div className="mt-16 flex justify-center">
             <ButtonLink 
               href="/work" 
-              variant="default" 
+              variant="solid" 
               className="group relative overflow-hidden rounded-full bg-foreground text-background px-10 py-4 text-base font-medium tracking-wide transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(26,26,26,0.3)]"
             >
               <span className="relative z-10 flex items-center gap-2">
