@@ -5,7 +5,7 @@ import { navItems, siteConfig } from "@/lib/site/config";
 
 export function SiteFooter() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-0 h-[700px] lg:h-[500px] bg-[#1c1c1c] text-[#f2f2f2] flex flex-col pt-16 pb-8 px-6 md:px-12">
+    <footer className="fixed bottom-0 left-0 right-0 z-0 h-[1000px] lg:h-[650px] bg-[#1c1c1c] text-[#f2f2f2] flex flex-col pt-16 pb-8 px-6 md:px-12">
       <div className="mx-auto flex h-full w-full max-w-[1400px] flex-col justify-between">
         
         {/* Middle Content */}
