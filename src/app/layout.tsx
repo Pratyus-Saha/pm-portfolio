@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <body className="text-foreground">
           <SmoothScroll>
-            <div className="relative z-10 bg-background mb-[1000px] lg:mb-[650px] shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-b-[40px] md:rounded-b-[60px] pb-10">
+            <div className="relative z-10 bg-background mb-[700px] lg:mb-[500px] shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-b-[40px] md:rounded-b-[60px] pb-10">
               <SiteHeader />
               {children}
             </div>
